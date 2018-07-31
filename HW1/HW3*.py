@@ -1,27 +1,26 @@
-print('Введите строку')
+print('Введите  целые неотрицательные числа, разделенные любым не цифровым литералом')
 string = input().lower()
-print(string)
 
-numbers_list = []                                       # var for storage of the list of all the numbers found
-number = ''                                             # temp var for storage of one number in str format
+numbers_list = []
+number = ''
 
 while 'cancel' not in string:
-    if string[0].isdigit():                             # checking if the 0 element is digit as the cycle starts from 1
+    if string[0].isdigit():
         number = ''.join([number, string[0]])
 
     for elem in range(1, len(string)):
-        if string[elem].isdigit():                      # creating the number from digits going one-by-one
+        if string[elem].isdigit():
             if string[elem-1] == '-':
-                number = ''.join(['-', string[elem]])   # if there is the '-' before the digit
+                number = ''.join(['-', string[elem]])
             else:
                 number = ''.join([number, string[elem]])
         elif number == '':
-            continue                                    # when non-digit and number is empty from the previous step
+            continue
         else:
-            numbers_list.append(int(number))            # when number is not empty after the cycle has ended
+            numbers_list.append(int(number))
             number = ''
 
-    if number != '':
+    if number is not '':
         numbers_list.append(int(number))
 
     s = 0
@@ -29,11 +28,11 @@ while 'cancel' not in string:
     for counter in numbers_list:
         s += counter
 
-    print(s)
+    print('Cумма всех чисел в строке = ', s)
 
     numbers_list = []
     number = ''
-    print('Введите строку')
+    print('Введите  целые неотрицательные числа, разделенные любым не цифровым литералом')
     string = input().lower()
 else:
     print('Bye')

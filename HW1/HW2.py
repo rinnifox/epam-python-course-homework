@@ -1,19 +1,19 @@
-print('Введите строку')
+print('Введите текст')
 string = input().lower().split()
 
-numbers = {}                             # var for dict {'word': num of occurencies}
+numbers = {}
 
 while 'cancel' not in string:
     for elem in string:
-        number = string.count(elem)      # counting the number of occurencies of the element
+        number = string.count(elem)
         numbers.update({elem: number})
-    maxvalue = max(numbers.values())     # finding the max value in the dict
+    maxvalue = max(numbers.values())
 
-    for key, value in numbers.items():   # finding the keys corresponding to max value
+    for key, value in numbers.items():
         if value == maxvalue:
             print('{k} - {v}'.format(k=key, v=value))
 
-    print('Введите строку')
+    print('Введите текст')
     string = input().lower().split()
 else:
     print('Bye')

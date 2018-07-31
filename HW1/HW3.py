@@ -1,19 +1,19 @@
-print('Введите строку')
+print('Введите  целые неотрицательные числа, разделенные любым не цифровым литералом')
 string = input().lower()
 
-numbers_list = []                              # var for storage of the list of all the numbers found in the string
-number = ''                                    # temp var for storage of one number in str format
+numbers_list = []
+number = ''
 
 while 'cancel' not in string:
     for elem in string:
         if elem.isdigit():
-            number = ''.join([number, elem])   # creating the number from digits going one-by-one
+            number = ''.join([number, elem])
         elif number == '':
-            continue                           # when non-digit and number is empty from the previous step
+            continue
         else:
             numbers_list.append(int(number))
             number = ''
-    if number != '':                           # when number is not empty after the cycle has ended
+    if number is not '':
         numbers_list.append(int(number))
 
     s = 0
@@ -21,11 +21,11 @@ while 'cancel' not in string:
     for counter in numbers_list:
         s += counter
 
-    print(s)
+    print('Cумма всех чисел в строке = ', s)
 
     numbers_list = []
     number = ''
-    print('Введите строку')
+    print('Введите  целые неотрицательные числа, разделенные любым не цифровым литералом')
     string = input().lower()
 
 else:

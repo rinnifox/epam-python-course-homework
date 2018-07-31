@@ -1,15 +1,15 @@
-print('Введите список неотрицательных целых чисел')
+print('Введите неотрицательные целые числа через пробел')
 string = input().split()
 
 while 'cancel' not in string:
 
-    numbers_list = (list(map(int, string)))  # transformation of the string to the list of integers
-    min_set = set()                          # creating the set for storage the positive integers, which are not in list
-    next_num = 0                             # var for storage of the next positive integer
+    numbers_list = (list(map(int, string)))
+    min_set = set()
+    next_num = 0
 
     if 1 not in numbers_list:
         print('Наименьшее положительное число, не входящее в список - ', 1)
-        print('Введите список неотрицательных целых чисел')
+        print('Введите неотрицательные целые числа через пробел')
         string = input().split()
     else:
         for elem in numbers_list:
@@ -19,7 +19,7 @@ while 'cancel' not in string:
             else:
                 min_set.add(next_num)
         print('Наименьшее целое положительное число, не входящее в список - ', min(min_set))
-        print('Введите список неотрицательных целых чисел')
+        print('Введите неотрицательные целые числа через пробел')
         string = input().split()
 
 else:

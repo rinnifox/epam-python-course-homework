@@ -1,10 +1,10 @@
 def is_palindrome(x):
-    reverse_x = str(x)[::-1]  # reversing the decimal number
+    reverse_x = str(x)[::-1]
     if str(x) == reverse_x:
-        y = str(bin(x)[2::])  # converting to binary, removing '0b'
-        reverse_y = y[::-1]   # reversing binary number
+        y = str(bin(x)[2::])  # removing '0b'
+        reverse_y = y[::-1]
         if y == reverse_y:
-            return x          # return the original number if both conditions are true
+            return x
         else:
             return 0
     else:
