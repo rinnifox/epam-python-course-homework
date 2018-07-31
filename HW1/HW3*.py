@@ -20,7 +20,7 @@ while 'cancel' not in string:
             numbers_list.append(int(number))
             number = ''
 
-    if number is not '':
+    if number != '':
         numbers_list.append(int(number))
 
     s = 0
