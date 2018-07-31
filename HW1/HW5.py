@@ -10,7 +10,6 @@ def is_palindrome(x):
     else:
         return 0
 
-
 s = 0
 
 for i in range(1, 1000000, 2):
