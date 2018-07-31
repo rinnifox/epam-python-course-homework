@@ -1,6 +1,6 @@
-print ('Введите строку')
+print ('Введите любые комбинации элементов через пробел')
 string = input().split()
-set = sorted(set(string), key=string.index)
-print(' '.join(string))
-print(' '.join(set))
+
+new_set = sorted(set(string), key=string.index)  # sorting the set for the same output order
+print(' '.join(new_set))
 
