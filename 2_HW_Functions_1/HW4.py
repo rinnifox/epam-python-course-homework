@@ -41,7 +41,3 @@ def letters_range(*args):
 
     return output
 
-
-print(letters_range('v', 'a', 0))
-
-

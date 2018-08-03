@@ -32,17 +32,17 @@ def atom(var=None):
     return get_value, set_value, process_value
 
 
-# пример функции для process_value()
+# example function for the usage of process_value()
 def example(value):
     return value ** 2
 
 
-# пример функции для process_value()
+# example function for the usage of process_value
 def example1(value):
     return value * 3
 
 
-# пример доступа ко вложенным функциям
+# example of usage of nested functions
 a = atom()
 a[0]()
 a[1](5)
