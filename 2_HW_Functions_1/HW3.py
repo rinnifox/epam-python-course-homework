@@ -9,13 +9,13 @@ def atom(var=None):
 
     def get_value():
         nonlocal var
-        print('Значение переменной = ', var)
+        print('The value of variable = ', var)
         return var
 
     def set_value(new_value):
         nonlocal var
         var = new_value
-        print('Новое значение переменной = ', var)
+        print('New value of variable = ', var)
         return var
 
     def process_value(*args):
@@ -23,9 +23,9 @@ def atom(var=None):
         if var:
             for f in args:
                 var = f(var)
-            print('Новое значение переменной = ', var)
+            print('New value of variable = ', var)
         else:
-            print('Невозможно обработать переменную, var = None')
+            print('Impossible to process the variable, var = None')
 
         return var
 
