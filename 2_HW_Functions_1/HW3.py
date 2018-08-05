@@ -41,13 +41,10 @@ a = get1()
 b = set1(3)
 c = process1(example, example1)
 
-get2, set2, process2 = atom(20)
+get2, set2, process2 = atom(10)
 d = get2()
-e = set2(5)
-f = process2(example, example1)
-
-print(a, b, c)
-print(d, e, f)
+e = set1(5)
+f = process1(example, example1)
 
 
 
