@@ -1,12 +1,5 @@
 def atom(var=None):
 
-    """
-    To get and modify the variable:
-    - get_value: atom(var)[0],
-    - set_value: atom(var)[1](new_value),
-    - process_value: atom(var)[2](functions)
-    """
-
     def get_value():
         nonlocal var
         print('The value of variable = ', var)
@@ -43,7 +36,18 @@ def example1(value):
 
 
 # example of usage of nested functions
-a = atom()
-a[0]()
-a[1](5)
-a[2](example, example1)
+get1, set1, process1 = atom(10)
+a = get1()
+b = set1(3)
+c = process1(example, example1)
+
+get2, set2, process2 = atom(20)
+d = get2()
+e = set2(5)
+f = process2(example, example1)
+
+print(a, b, c)
+print(d, e, f)
+
+
+
