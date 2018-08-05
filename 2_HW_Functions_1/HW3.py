@@ -30,7 +30,7 @@ def example(value):
     return value ** 2
 
 
-# example function for the usage of process_value
+# example function for the usage of process_value()
 def example1(value):
     return value * 3
 
