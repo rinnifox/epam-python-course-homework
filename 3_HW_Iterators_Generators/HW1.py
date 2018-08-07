@@ -36,3 +36,4 @@ class GraphIterator:
             return self.start_v
         else:
             raise StopIteration
+        
