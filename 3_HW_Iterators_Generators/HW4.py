@@ -27,10 +27,10 @@ operator = namedtuple('Operator_Info', ['priority', 'symbol'])
 
 class Operators(Enum):
 
-    MULT = operator(3, '*')
     DIV = operator(3, '/')
-    PLUS = operator(2, '+')
+    MULT = operator(3, '*')
     MIN = operator(2, '-')
+    PLUS = operator(2, '+')
     PAR_1 = operator(1, '(')
     PAR_2 = operator(1, ')')
     ALPHA = operator(0, 'alpha')
@@ -72,7 +72,7 @@ def brackets_trim(input_data: str) -> str:
 
     def postfix_to_infix(postfix_ex):
         stack = []
-        priority_history = Stack()
+        priority_history = []
         token_list = postfix_ex.split()
 
         for token in token_list:
@@ -87,12 +87,16 @@ def brackets_trim(input_data: str) -> str:
                 if elem1.isalpha():
                     el1_priority = Operators.ALPHA.value.priority
                 else:
-                    el1_priority = priority_history.peek()
+                    el1_priority = priority_history.pop()
+                    if token == Operators.DIV.value.symbol and el1_priority == Operators.DIV.value.priority:
+                        el1_priority -= 0.5
+                    elif token == Operators.MIN.value.symbol and el1_priority == Operators.MIN.value.priority:
+                        el1_priority -= 0.5
 
                 if elem2.isalpha():
                     el2_priority = Operators.ALPHA.value.priority
                 else:
-                    el2_priority = priority_history.peek()
+                    el2_priority = priority_history.pop()
 
                 if el1_priority < op_priority and el1_priority != 0:
                     elem1 = '(' + elem1 + ')'
@@ -101,7 +105,7 @@ def brackets_trim(input_data: str) -> str:
 
                 stack.append(elem2 + token + elem1)
 
-                priority_history.push(op_priority)
+                priority_history.append(op_priority)
 
         return " ".join(stack)
 
@@ -109,4 +113,3 @@ def brackets_trim(input_data: str) -> str:
     from_rpn = postfix_to_infix(to_rpn)
 
     return from_rpn
-
