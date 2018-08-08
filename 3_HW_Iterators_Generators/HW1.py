@@ -27,6 +27,11 @@ class GraphIterator:
                     self.queue.append(elem)
         if self.queue:
             return True
+        else:
+            for key in self.graph.E:
+                if key not in self.used:
+                    self.queue.append(key)
+                    return True
 
     def __next__(self) -> str:
         if self.hasNext():
@@ -36,4 +41,3 @@ class GraphIterator:
             return self.start_v
         else:
             raise StopIteration
-        
