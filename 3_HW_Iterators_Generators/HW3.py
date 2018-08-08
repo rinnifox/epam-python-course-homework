@@ -7,7 +7,7 @@ def hardlink_check(directory_path: str) -> bool:
 
     directory = Path(directory_path)
 
-    if not directory.exists():
+    if not directory.exists() or not directory.is_dir():
         return False
 
     inodes = list()
