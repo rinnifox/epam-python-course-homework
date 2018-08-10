@@ -17,12 +17,7 @@ def atom(var=None):
             for func in args:
                 var = func(var)
             print('New value of variable = ', var)
-        else:
-            print('Impossible to process the variable, var = None')
 
         return var
 
     return get_value, set_value, process_value
-
-
-
