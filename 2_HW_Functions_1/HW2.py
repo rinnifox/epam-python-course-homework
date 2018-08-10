@@ -6,5 +6,3 @@ def make_it_count(func, counter_name):
         return func(*args, **kwargs)
 
     return wrapper
-
-
