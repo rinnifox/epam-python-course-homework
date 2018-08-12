@@ -25,10 +25,3 @@ def make_cache(timer):
         return wrapper
 
     return wrap_function
-
-
-@make_cache(10)
-def fib(n):
-    if n < 2:
-        return n
-    return fib(n-1) + fib(n-2)
