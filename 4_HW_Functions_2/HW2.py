@@ -1,9 +1,7 @@
-def newton_sqrt(x, accuracy=0.01, approx=1):
-
-    newapprox = 0.5 * (approx + x / approx)
+def newton_sqrt(x, accuracy=0, approx=1):
+    newapprox = (approx + x / approx) / 2
 
     if abs(newapprox - approx) > accuracy:
-        print(newapprox)
         return newton_sqrt(x, approx=newapprox)
     else:
-        return round(newapprox, ndigits=2)
+        return newapprox
