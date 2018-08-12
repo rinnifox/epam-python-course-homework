@@ -11,7 +11,7 @@ def count_points(*args):
             w2 = (i - x2) * (y3 - y2) - (j - y2) * (x3 - x2)
             w3 = (i - x3) * (y1 - y3) - (j - y3) * (x1 - x3)
 
-            if (w1 > 0 and w2 > 0 and w3 > 0) or (w1 > 0 and w2 > 0 and w3 > 0) or w1 == 0 or w2 == 0 or w3 == 0:
+            if (w1 < 0 and w2 < 0 and w3 < 0) or (w1 > 0 and w2 > 0 and w3 > 0) or w1 == 0 or w2 == 0 or w3 == 0:
                 points_counter += 1
 
     return points_counter
