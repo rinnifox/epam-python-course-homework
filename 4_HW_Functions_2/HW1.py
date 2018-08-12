@@ -21,7 +21,3 @@ while True:
         print(round(res, ndigits=2))
     else:
         print('Не удалось преобразовать введенный текст в число')
-
-
-
-
