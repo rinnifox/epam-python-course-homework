@@ -14,9 +14,9 @@ while True:
     elif line.isdigit():
         number = find_number(line)
         if number % 2 == 0:
-            res = number * 2
+            res = number * 3
         else:
-            res = number / 3 + 1
+            res = number / 2 + 1
 
         print(round(res, ndigits=2))
     else:
