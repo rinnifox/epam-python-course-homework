@@ -9,7 +9,7 @@ while True:
     line = input('Введите текст: ')
 
     if line == 'cancel':
-        print ('Bye')
+        print('Bye')
         break
     elif line.isdigit():
         number = find_number(line)
@@ -19,7 +19,6 @@ while True:
             res = number / 3 + 1
 
         print(round(res, ndigits=2))
-
     else:
         print('Не удалось преобразовать введенный текст в число')
 
