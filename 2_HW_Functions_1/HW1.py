@@ -9,7 +9,7 @@ def partial(func, *fixated_args, **fixated_kwargs):
         fixated_kwargs.update(kwargs)
         return func(*fixated_args, **fixated_kwargs)
 
-    arg_names = inspect.getcallargs(func, *fixated_args, **fixated_kwargs)
+    arg_names = inspect.getcallargs(func, fixated_args, fixated_kwargs)
 
     wrapper.__name__ = 'partial_{}'.format(func.__name__)
     wrapper.__doc__ = """ 
@@ -21,26 +21,22 @@ def partial(func, *fixated_args, **fixated_kwargs):
 
 # TESTS
 
-def avg(*args):
-    return sum(args)/2
+def avg(a, b):
+    return (a+b)/2
 
 
-_avg = partial(avg, 2, 3)
+_avg = partial(avg, 4, 3)
 print(_avg.__name__)
 print(_avg.__doc__)
 print(_avg())
 
-_avg = partial(avg, 2)
+
+_avg = partial(avg, 4)
 print(_avg.__name__)
 print(_avg.__doc__)
-print(_avg())
+print(_avg(3))
 
-_avg = partial(avg, 2, 3, 5)
-print(_avg.__name__)
-print(_avg.__doc__)
-print(_avg())
-
-_avg = partial(avg, 2, 3, 5)
+_avg = partial(avg)
 print(_avg.__name__)
 print(_avg.__doc__)
 print(_avg(3, 4))
