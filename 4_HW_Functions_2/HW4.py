@@ -13,7 +13,7 @@ def make_cache(timer):
 
             if end_time - start_time >= timer:
                 cache.clear()
-                print('clearing')
+                # print('clearing')      # можно включить, чтобы понаблюдать за очисткой
                 start_time = time.time()
 
             if args in cache:
@@ -21,7 +21,7 @@ def make_cache(timer):
             else:
                 val = func(*args)
                 cache[args] = val
-                # print(cache)
+                # print(cache)           # можно включить, чтобы понаблюдать за очисткой
                 return val
 
         return wrapper
@@ -34,6 +34,7 @@ def fib(n):
     if n < 2:
         return n
     return fib(n-1) + fib(n-2)
+
 
 print(fib(5))
 print(fib(2))
