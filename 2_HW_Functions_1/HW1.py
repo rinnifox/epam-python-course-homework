@@ -25,6 +25,10 @@ def avg(a, b):
     return (a+b)/2
 
 
+def add(x, y):
+    return x + y
+
+
 _avg = partial(avg, 4, 3)
 print(_avg.__name__)
 print(_avg.__doc__)
@@ -40,3 +44,9 @@ _avg = partial(avg)
 print(_avg.__name__)
 print(_avg.__doc__)
 print(_avg(3, 4))
+
+
+p_add = partial(add, 2)
+print(p_add.__name__)
+print(p_add.__doc__)
+print(p_add(4))
