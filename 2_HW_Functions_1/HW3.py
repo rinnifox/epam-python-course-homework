@@ -1,7 +1,6 @@
 def atom(var=None):
 
     def get_value():
-        nonlocal var
         return var
 
     def set_value(new_value):
