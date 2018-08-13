@@ -1,8 +1,10 @@
 def find_number(string):
-    if int(string) / 10 < 1:
-        return int(string) % 10
+    digit = int(string)
+
+    if digit / 10 < 1:
+        return digit % 10
     else:
-        return 10*find_number(string[:-1]) + int(string[-1])
+        return 10*find_number(string[:-1]) + digit % 10
 
 
 while True:
@@ -14,10 +16,10 @@ while True:
     elif line.isdigit():
         number = find_number(line)
         if number % 2 == 0:
-            res = number / 2
+            res = number // 2
         else:
             res = number * 3 + 1
 
-        print(round(res, ndigits=2))
+        print(res)
     else:
         print('Не удалось преобразовать введенный текст в число')
