@@ -17,3 +17,30 @@ def partial(func, *fixated_args, **fixated_kwargs):
     """.format(func.__name__, arg_names)
 
     return wrapper
+
+
+# TESTS
+
+def avg(*args):
+    return sum(args)/2
+
+
+_avg = partial(avg, 2, 3)
+print(_avg.__name__)
+print(_avg.__doc__)
+print(_avg())
+
+_avg = partial(avg, 2)
+print(_avg.__name__)
+print(_avg.__doc__)
+print(_avg())
+
+_avg = partial(avg, 2, 3, 5)
+print(_avg.__name__)
+print(_avg.__doc__)
+print(_avg())
+
+_avg = partial(avg, 2, 3, 5)
+print(_avg.__name__)
+print(_avg.__doc__)
+print(_avg(3, 4))
