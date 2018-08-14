@@ -14,4 +14,5 @@ def collatz_steps(n):
 
 
 print(collatz_steps(12))
-
+print (collatz_steps(16))
+print(collatz_steps(1000000))

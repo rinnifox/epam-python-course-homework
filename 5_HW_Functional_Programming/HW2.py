@@ -8,3 +8,7 @@ def is_armstrong(number):
     s = reduce(lambda a, b: a+b,  map(lambda x: x**(len(digits)), map(int, digits)))
 
     return True if s == number else False
+
+
+print(is_armstrong(153))
+print(is_armstrong(10))
