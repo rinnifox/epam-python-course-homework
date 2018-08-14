@@ -20,6 +20,8 @@ def dec_counter(var_name: str):
     return wrap_function
 
 
+# TESTS
+
 x = 15
 
 # recursive
