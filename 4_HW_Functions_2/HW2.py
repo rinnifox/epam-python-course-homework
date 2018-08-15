@@ -14,7 +14,7 @@ def newton_sqrt(x, accuracy=0.0, percentage=100, approx=1):
     else:
         s = '{}'.format(accuracy)
 
-        if 'e' in s:
+        if accuracy <= 0.00001:
             r = int(s[-2:])
         else:
             r = abs(s.find('.') - len(s)) - 1
