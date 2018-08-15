@@ -11,7 +11,10 @@ def count_points(*args):
             w2 = (i - x2) * (y3 - y2) - (j - y2) * (x3 - x2)
             w3 = (i - x3) * (y1 - y3) - (j - y3) * (x1 - x3)
 
-            if (w1 < 0 and w2 < 0 and w3 < 0) or (w1 > 0 and w2 > 0 and w3 > 0) or w1 == 0 or w2 == 0 or w3 == 0:
+            if (w1 < 0 and w2 < 0 and w3 < 0) or (w1 > 0 and w2 > 0 and w3 > 0) or \
+                    w1 == 0 and ((w2 <= 0 and w3 <= 0) or (w2 >= 0 and w3 >= 0)) or \
+                    w2 == 0 and ((w1 <= 0 and w3 <= 0) or (w1 >= 0 and w3 >= 0)) or \
+                    w3 == 0 and ((w2 <= 0 and w1 <= 0) or (w2 >= 0 and w1 >= 0)):
                 points_counter += 1
 
     return points_counter
@@ -20,3 +23,6 @@ def count_points(*args):
 print(count_points((-2,-5), (0,0), (5,2)))
 print(count_points((5,2), (0,0), (-2,-5)))
 print(count_points((5,2), (-2,-5), (0,0)))
+
+print(count_points((0,1), (1, 3), (-1, -4)))
+print(count_points((4,-1), (6,3), (0,-5)))
