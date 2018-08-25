@@ -20,7 +20,6 @@ class AbstractOptimiser:
 
     def post_process(self, opt_expr):
         a = postfix_to_infix(opt_expr)
-        #print('a=', a)
         num = ''
         res = []
         for elem in a:
@@ -41,6 +40,7 @@ class DoubleNegativeOptimiser(AbstractOptimiser):
 
     def process_internal(self, post_expr):
         #print('doub_neg input', post_expr)
+
         if '- -' in post_expr:
             expr = post_expr.replace(' ', '')
             pattern = r'[\S][-]{2}\Z'
@@ -61,8 +61,10 @@ class DoubleNegativeOptimiser(AbstractOptimiser):
 class IntegerCostantsOptimiser(AbstractOptimiser):
     def process_internal(self, post_expr):
         #print('int-opt input', post_expr)
+
         stack = []
         ops = set()
+
         for token in post_expr.split():
             if token.isalpha() or token.isdigit():
                 stack.append(token)
@@ -113,7 +115,6 @@ class IntegerCostantsOptimiser(AbstractOptimiser):
             stack = res_stack
 
         #print('int optimizer', stack)
-
         return ' '.join(stack)
 
 
