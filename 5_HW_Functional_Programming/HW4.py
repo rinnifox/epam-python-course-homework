@@ -18,3 +18,9 @@ last_ten = str(reduce(lambda a, b: a+b, (x**x for x in range(1, 1001))))[-10:]
 
 champernowne = reduce(lambda x, y: x*y, list(map(int,((reduce(lambda a, b: a+b, (str(i) for i in range(25000))))[10**c]
                                                       for c in range(6)))))
+
+
+print ('Problem #9 answer =', max_prod)
+print ('Problem #6 answer =', dif)
+print('Problem #48 answer =', last_ten)
+print('Problem #40 answer =', champernowne)
