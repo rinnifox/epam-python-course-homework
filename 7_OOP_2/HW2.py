@@ -64,8 +64,7 @@ class Direction(Enum):
     west = 270
 
 
-# outputs
-
+# tests
 print(Direction.north)
 print(Direction.north.name)
 print(Direction.north.value, '\n')
@@ -82,10 +81,9 @@ print(id(Direction(180)), '\n')
 # print(Direction(30))
 
 print(Direction['west'], '\n')
-# print(Direction['north-west'])
+#print(Direction['north-west'])
 
 for i in Direction:
     print(i)
-
 
 
