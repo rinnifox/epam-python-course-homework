@@ -39,8 +39,8 @@ def avg(a, b):
     return (a+b)/2
 
 
-def random_func(a, *args, **kwargs):
-    zero = a + 3
+def random_func(a, b, *args, **kwargs):
+    zero = a + 3 + b
     first = sum(args)/2
     second = kwargs
     return zero, first, second
@@ -61,7 +61,7 @@ print(_avg.__name__)
 print(_avg.__doc__)
 print(_avg(3, 4))
 
-_random_func = partial(random_func, 4, 3, 6, x=5)
+_random_func = partial(random_func, 4, 3, 6, 10, x=5)
 print(_random_func.__name__)
 print(_random_func.__doc__)
 print(_random_func())
