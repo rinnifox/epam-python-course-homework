@@ -1,27 +1,30 @@
 import time
+import requests
 
 
 def make_cache(timer):
-    start_time = time.time()
 
     def wrap_function(func):
         cache = {}
+        times_dct = {}
 
         def wrapper(*args):
-            nonlocal start_time
-            end_time = time.time()
-
-            if end_time - start_time >= timer:
-                cache.clear()
-                # print('clearing')      # можно включить, чтобы понаблюдать за очисткой
-                start_time = time.time()
 
             if args in cache:
-                return cache[args]
+                end_time = time.time()
+                if end_time-times_dct[args] > timer:
+                    cache.pop(args)
+                    val = func(*args)
+                    cache[args] = val
+                    times_dct.update({args: time.time()})
+                    return val
+                else:
+                    print('getting from cache...')
+                    return cache[args]
             else:
                 val = func(*args)
                 cache[args] = val
-                # print(cache)           # можно включить, чтобы понаблюдать за очисткой
+                times_dct.update({args:time.time()})
                 return val
 
         return wrapper
@@ -29,15 +32,29 @@ def make_cache(timer):
     return wrap_function
 
 
-@make_cache(0.0001)
-def fib(n):
-    if n < 2:
-        return n
-    return fib(n-1) + fib(n-2)
+# tests
 
 
-print(fib(5))
-print(fib(2))
-print(fib(10))
-print(fib(6))
+@make_cache(12)
+def check_code(site):
+    try:
+        r = requests.head(site)
+        return r.status_code, r.url
+    except requests.ConnectionError:
+        print("failed to connect")
 
+
+print(check_code('https://stackoverflow.com'))  # getting from function
+print(check_code('https://github.com'))  # getting from function
+
+time.sleep(10)
+
+print(check_code('https://github.com'))  # getting from cache
+print(check_code('https://stackoverflow.com'))  # getting from cache
+print(check_code('https://www.youtube.com/'))  # getting from function
+
+time.sleep(7)
+
+print(check_code('https://github.com'))  # getting from function
+print(check_code('https://stackoverflow.com'))  # getting from function
+print(check_code('https://www.youtube.com/'))   # still getting from cache
