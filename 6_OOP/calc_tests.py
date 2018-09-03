@@ -1,7 +1,7 @@
 from HW1 import Calculator
 from HW2 import DoubleNegativeOptimiser
 from HW2 import IntegerCostantsOptimiser
-from HW2 import SimplifierOptimiser
+from HW2 import UnnecessaryOperationsOptimiser
 
 
 validate_check_list = [('a+2', True), ('a-(-2)', True), ('a+2-', False), ('a+(2+(3+5)', False), ('a^2', True),
@@ -89,7 +89,7 @@ simplifier_optimiser_test = [
 
 for case, exps in simplifier_optimiser_test:
     tokens = list(case)
-    calc = Calculator(tokens, [DoubleNegativeOptimiser(), IntegerCostantsOptimiser(), SimplifierOptimiser()])
+    calc = Calculator(tokens, [DoubleNegativeOptimiser(), IntegerCostantsOptimiser(), UnnecessaryOperationsOptimiser()])
 
     calc.optimise()
 

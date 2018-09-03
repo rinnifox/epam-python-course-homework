@@ -39,7 +39,7 @@ class AbstractOptimiser:
 class DoubleNegativeOptimiser(AbstractOptimiser):
 
     def process_internal(self, post_expr):
-        #print('doub_neg input', post_expr)
+        # print('doub_neg input', post_expr)
 
         if '- -' in post_expr:
             expr = post_expr.replace(' ', '')
@@ -52,22 +52,25 @@ class DoubleNegativeOptimiser(AbstractOptimiser):
                 if search[0][0].isalpha():
                     post_expr = post_expr.replace('- -', '+')
                 else:
-                    post_expr = post_expr.replace('- -', '')
+                    post_expr = post_expr.replace(' - -', '')
 
-        #print('doub_neg', post_expr)
+        # print('doub_neg', post_expr)
         return post_expr
 
 
 class IntegerCostantsOptimiser(AbstractOptimiser):
     def process_internal(self, post_expr):
-        #print('int-opt input', post_expr)
+        # print('int-opt input', post_expr)
 
         stack = []
         ops = set()
+        digits = False
 
         for token in post_expr.split():
             if token.isalpha() or token.isdigit():
                 stack.append(token)
+                if token.isdigit():
+                    digits = True
             else:
                 ops.add(token)
                 if token == '-' and len(stack) < 2:
@@ -81,6 +84,7 @@ class IntegerCostantsOptimiser(AbstractOptimiser):
                             new_exp = new_exp.replace('^', '**')
                         if '/' in new_exp:
                             new_exp = new_exp.replace('/', '//')
+
                         result = str(eval(new_exp))
                         stack.pop()
                         stack.pop()
@@ -93,7 +97,8 @@ class IntegerCostantsOptimiser(AbstractOptimiser):
                         stack.append(token)
 
         # for addition only or multiplication only
-        if (ops == {'+'} or ops == {'*'}) and len(stack) > 1:
+        if (ops == {'+'} or ops == {'*'}) and digits == True:
+
             new_stack = ''
             operation = ops.pop()
             if operation == '+':
@@ -108,19 +113,19 @@ class IntegerCostantsOptimiser(AbstractOptimiser):
                         expr = eval(new_stack + operation + y)
                         new_stack = str(expr)
 
-            res_stack = new_stack
             for y in stack:
                 if y.isalpha():
-                    res_stack = res_stack + y + operation
-            stack = res_stack
+                    new_stack = new_stack + y + operation
 
-        #print('int optimizer', stack)
+            stack = new_stack
+
+        # print('int optimizer', stack)
         return ' '.join(stack)
 
 
-class SimplifierOptimiser(AbstractOptimiser):
+class UnnecessaryOperationsOptimiser(AbstractOptimiser):
     def process_internal(self, post_expr):
-        #print('simple_input', post_expr)
+        # print('simple_input', post_expr)
 
         post_expr1 = ''
 
@@ -188,5 +193,5 @@ class SimplifierOptimiser(AbstractOptimiser):
                 if elem[0] == elem[2]:
                     post_expr = post_expr.replace(elem, '0')
 
-        #print('simplifyer', post_expr)
+        # print('simplifyer', post_expr)
         return post_expr

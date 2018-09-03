@@ -47,6 +47,23 @@ def infix_to_postfix(token_list):
         op_stack = Stack()
         postfix_list = []
 
+        new_token_list = list()
+        number = ''
+
+        for elem in token_list:
+            if elem.isdigit():
+                number = ''.join([number, elem])
+            else:
+                if number != '':
+                    new_token_list.append(number)
+                new_token_list.append(elem)
+                number = ''
+
+        if number != '':
+            new_token_list.append(number)
+
+        token_list = new_token_list
+
         for token in token_list:
             if token.isalpha() or token.isdigit():
                 postfix_list.append(token)
